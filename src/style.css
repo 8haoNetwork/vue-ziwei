@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 运限颜色 */
+  --color-horoscope-benming: #e53131; /* 深红色 - 本命 */
+  --color-horoscope-daxian: #592599;  /* 蓝紫色 - 大限 */
+  --color-horoscope-liunian: #f58f00; /* 橙色 - 流年 */
+  --color-horoscope-liuyue: #388e3c;  /* 绿色 - 流月 */
+  --color-horoscope-liuri: #954932;   /* 棕色 - 流日 */
+  --color-horoscope-liushi: #03a9f4;  /* 浅蓝色 - 流时 */
+  
+  /* 四化颜色 */
+  --color-mutagen-lu: #4caf50;   /* 绿色 - 禄 */
+  --color-mutagen-quan: #ff9800; /* 橙色 - 权 */
+  --color-mutagen-ke: #2196f3;   /* 蓝色 - 科 */
+  --color-mutagen-ji: #f44336;   /* 红色 - 忌 */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* 导入共享的图表样式 */
+@import './styles/chartCommon.css';
+
