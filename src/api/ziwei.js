@@ -1,7 +1,18 @@
 import axios from 'axios'
 
+// 获取 API 基础地址，如果未设置则给出提示
+const baseURL = import.meta.env.VITE_API_BASE_URL
+if (!baseURL) {
+  console.warn(
+    '⚠️ 警告: VITE_API_BASE_URL 未设置！\n' +
+    '请在项目根目录创建 .env 文件，并设置 VITE_API_BASE_URL。\n' +
+    '例如：VITE_API_BASE_URL=http://localhost:3001/api\n' +
+    '或：VITE_API_BASE_URL=https://cloud.apiworks.com/open/astro'
+  )
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: baseURL || '',
   timeout: 10000
 })
 
@@ -12,8 +23,8 @@ api.interceptors.request.use(
     // 注意：如果使用环境变量，这些值仍然会暴露在前端代码中
     // 建议使用代理服务器方案（见 README.md）
     config.headers = config.headers || {}
-    config.headers['appId'] = import.meta.env.VITE_APP_ID || ''
-    config.headers['appKey'] = import.meta.env.VITE_APP_KEY || ''
+    config.headers['X-App-Id'] = import.meta.env.VITE_APP_ID || ''
+    config.headers['X-App-Key'] = import.meta.env.VITE_APP_KEY || ''
     return config
   },
   (error) => {

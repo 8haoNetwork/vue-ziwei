@@ -1,3 +1,6 @@
+/* 导入共享的图表样式 - @import 必须放在文件最前面 */
+@import './styles/chartCommon.css';
+
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +32,4 @@ body {
 #app {
   min-height: 100vh;
 }
-
-/* 导入共享的图表样式 */
-@import './styles/chartCommon.css';
 
