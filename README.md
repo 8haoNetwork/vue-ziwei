@@ -129,7 +129,7 @@ VITE_APP_KEY=your_app_key
    APP_ID=your_app_id
    APP_KEY=your_app_key
    API_BASE_URL=https://cloud.apiworks.com/open/astro
-   PORT=3001
+   PORT=3000
    ```
 
 3. **启动代理服务器**:
@@ -140,7 +140,7 @@ VITE_APP_KEY=your_app_key
 4. **修改前端配置**:
    将 `VITE_API_BASE_URL` 设置为代理服务器地址：
    ```env
-   VITE_API_BASE_URL=http://localhost:3001/api
+   VITE_API_BASE_URL=http://localhost:3000/api
    ```
 
 5. **部署时**:
@@ -324,7 +324,7 @@ VITE_APP_KEY=your_app_key
 
 ## 相关链接
 
-- 项目地址: [GitHub](https://github.com/8haoNetwork/vue-ziwei) | [Gitee](https://gitee.com/8haoNetwork/vue-ziwei)
+- 项目地址: [GitHub](https://github.com/8haoNetwork/vue-ziwei) | [Gitee](https://gitee.com/wingerd/vue-ziwei)
 - API 文档: [apiworks.com](https://astro.apiworks.com)
 
 ## 许可证
