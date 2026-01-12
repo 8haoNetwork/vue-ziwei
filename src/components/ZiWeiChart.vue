@@ -393,7 +393,7 @@ const getPalaceBoxClass = (position) => {
   const palaceIndex = getPalaceIndexByPosition(position)
   
   // 判断是否是命宫（只有在没有点击其他宫位时，命宫才默认高亮）
-  const isOriginPalace = palace?.index === chartData.value?.origin_palace_idx && clickedPalaceIndex.value === -1
+  const isOriginPalace = palace?.index === chartData.value?.natal_palace_idx && clickedPalaceIndex.value === -1
   // 判断是否是点击的本宫
   const isClickedPalace = palaceIndex === clickedPalaceIndex.value
   // 判断是否是对宫或三合宫
@@ -462,7 +462,7 @@ const updateChartData = () => {
   // 排序宫位（从命宫开始）
   let sortedPalaces = sortPalacesFromOrigin(
     backendRawData.value.natal?.palaces || [],
-    backendRawData.value.origin_palace_idx
+    backendRawData.value.natal_palace_idx
   )
   
   // 合并运限数据

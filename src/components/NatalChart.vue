@@ -298,6 +298,12 @@ const getPalaceIndexByPosition = (position) => {
     return -1
   }
   
+  // 通过 index 属性匹配（更可靠），如果找不到再通过名称匹配
+  const index = chartData.value.palaces.findIndex(p => p.index === palace.index)
+  if (index !== -1) {
+    return index
+  }
+  // 备用方案：通过名称匹配
   return chartData.value.palaces.findIndex(p => p.name === palace.name)
 }
 
@@ -335,7 +341,7 @@ const getPalaceBoxClass = (position) => {
   const palace = getPalaceByPosition(position)
   const palaceIndex = getPalaceIndexByPosition(position)
   
-  const isOriginPalace = palace?.index === chartData.value?.origin_palace_idx && clickedPalaceIndex.value === -1
+  const isOriginPalace = palace?.index === chartData.value?.natal_palace_idx && clickedPalaceIndex.value === -1
   const isClickedPalace = palaceIndex === clickedPalaceIndex.value
   const isSurroundedPalace = shouldHighlightPalace(palaceIndex, highlightedPalaces.value)
   
@@ -381,6 +387,8 @@ const updateChartData = () => {
   // 如果返回的数据直接包含 natal 字段，使用它
   // 如果没有 natal 字段，说明返回的数据本身就是本命盘数据
   const natal = backendRawData.value.natal || backendRawData.value
+  const natalPalaceIdx = natal.natal_palace_idx || backendRawData.value.natal_palace_idx
+  const rawPalaces = natal.palaces || backendRawData.value.palaces || []
   
   // 只使用本命盘相关数据，忽略任何运限数据（decadal, yearly, monthly, daily, hourly）
   chartData.value = {
@@ -394,9 +402,23 @@ const updateChartData = () => {
     body_lord: backendRawData.value.body_lord,
     birth_year_doujun: backendRawData.value.birth_year_doujun,
     current_year_doujun: backendRawData.value.current_year_doujun,
-    origin_palace_idx: natal.origin_palace_idx || backendRawData.value.origin_palace_idx,
+    natal_palace_idx: natalPalaceIdx,
     body_palace_idx: natal.body_palace_idx || backendRawData.value.body_palace_idx,
-    palaces: natal.palaces || backendRawData.value.palaces || []
+    palaces: rawPalaces
+  }
+  
+  // 清空高亮
+  highlightedPalaces.value = []
+  clickedPalaceIndex.value = -1
+  clickedMutagenInfos.value = []
+  
+  // 自动高亮命宫及其三方四正
+  if (rawPalaces && rawPalaces.length > 0 && natalPalaceIdx !== undefined) {
+    // 在数组中找到命宫的位置（通过原始索引匹配）
+    const targetPalaceIndex = rawPalaces.findIndex(p => p.index === natalPalaceIdx)
+    if (targetPalaceIndex !== -1) {
+      handlePalaceClick(targetPalaceIndex)
+    }
   }
 }
 
