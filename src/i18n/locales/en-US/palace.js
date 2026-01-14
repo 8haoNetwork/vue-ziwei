@@ -1,16 +1,16 @@
 export default {
-  soulPalace: 'Soul Palace',
+  lifePalace: 'Life Palace',
   bodyPalace: 'Body Palace',
   siblingsPalace: 'Siblings',
   spousePalace: 'Spouse',
   childrenPalace: 'Children',
   wealthPalace: 'Wealth',
   healthPalace: 'Health',
-  surfacePalace: 'Surface',
+  migrationPalace: 'Migration',
   friendsPalace: 'Friends',
   careerPalace: 'Career',
   propertyPalace: 'Property',
-  spiritPalace: 'Spirit',
+  fortunePalace: 'Fortune',
   parentsPalace: 'Parents',
   originalPalace: 'Original'
 }

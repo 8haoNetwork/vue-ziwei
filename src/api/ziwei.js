@@ -108,23 +108,6 @@ function buildRequestBody(params) {
 }
 
 /**
- * 获取紫微斗数盘数据（全部运限）
- * @param {Object} params - 请求参数
- * @param {string} params.birthday - 出生日期 (格式: YYYY-MM-DD HH:mm:ss)
- * @param {number} params.tz - 时区，默认8
- * @param {string} params.gender - 性别 ('男'/'女' 或 'male'/'female')
- * @param {string} params.target_date - 目标日期时间 (格式: YYYY-MM-DD HH:mm:ss，可选)
- * @param {boolean} params.is_late_zi - 是否使用晚子时处理
- * @param {string} params.leap_boundary - 闰月分界：mid_month/current_month/next_month
- * @param {Object} params.custom_transforms - 自定义四化配置
- * @returns {Promise}
- */
-export function getZiWeiChart(params) {
-  const requestBody = buildRequestBody(params)
-  return api.post('/ziwei/chart', requestBody)
-}
-
-/**
  * 获取本命盘数据
  * 注意：此接口返回的数据不包含大限、流年、流月、流日、流时等运限数据
  * @param {Object} params - 请求参数（不包含 target_date）
@@ -146,6 +129,42 @@ export function getNatalChart(params) {
   }
   return api.post('/ziwei/natal', requestBody)
 }
+
+/**
+ * 获取紫微斗数盘数据（全部运限及星耀落宫解读）
+ * @param {Object} params - 请求参数
+ * @param {string} params.birthday - 出生日期 (格式: YYYY-MM-DD HH:mm:ss)
+ * @param {number} params.tz - 时区，默认8
+ * @param {string} params.gender - 性别 ('男'/'女' 或 'male'/'female')
+ * @param {string} params.target_date - 目标日期时间 (格式: YYYY-MM-DD HH:mm:ss，可选)
+ * @param {boolean} params.is_late_zi - 是否使用晚子时处理
+ * @param {string} params.leap_boundary - 闰月分界：mid_month/current_month/next_month
+ * @param {Object} params.custom_transforms - 自定义四化配置
+ * @returns {Promise}
+ */
+export function getZiWeiChart(params) {
+  const requestBody = buildRequestBody(params)
+  return api.post('/ziwei/detail', requestBody)
+}
+
+
+/**
+ * 获取紫微斗数盘数据（全部运限及星耀落宫解读）
+ * @param {Object} params - 请求参数
+ * @param {string} params.birthday - 出生日期 (格式: YYYY-MM-DD HH:mm:ss)
+ * @param {number} params.tz - 时区，默认8
+ * @param {string} params.gender - 性别 ('男'/'女' 或 'male'/'female')
+ * @param {string} params.target_date - 目标日期时间 (格式: YYYY-MM-DD HH:mm:ss，可选)
+ * @param {boolean} params.is_late_zi - 是否使用晚子时处理
+ * @param {string} params.leap_boundary - 闰月分界：mid_month/current_month/next_month
+ * @param {Object} params.custom_transforms - 自定义四化配置
+ * @returns {Promise}
+ */
+export function getZiWeiDetail(params) {
+  const requestBody = buildRequestBody(params)
+  return api.post('/ziwei/detail', requestBody)
+}
+
 
 export default api
 

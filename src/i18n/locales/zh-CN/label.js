@@ -2,6 +2,7 @@ export default {
   beijingTime: '北京时间',
   lunarCalendar: '农历',
   ganzhi: '干支',
+  solarTermGanzhi: '节气四柱',
   zodiac: '生肖',
   lifeLord: '命主',
   bodyLord: '身主',

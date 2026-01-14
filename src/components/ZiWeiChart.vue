@@ -69,8 +69,8 @@
             <span class="info-value chart-info-value">{{ chartData.lunar_date }}</span>
           </div>
           <div class="info-row chart-info-row">
-            <span class="info-label chart-info-label">{{ t('label.ganzhi') }}</span>
-            <span class="info-value chart-info-value">{{ chartData.chinese_date }}</span>
+            <span class="info-label chart-info-label">{{ t('label.solarTermGanzhi') }}</span>
+            <span class="info-value chart-info-value">{{ chartData.solar_term_ganzhi || '' }}</span>
           </div>
           <div class="info-row chart-info-row">
             <span class="info-label chart-info-label">{{ t('label.zodiac') }}</span>
@@ -209,6 +209,24 @@
       </div>
     </div>
 
+    <!-- 星耀落宫解读展示区域（显示在格局列表下方） -->
+    <div v-if="starInterps && starInterps.length > 0" class="star-interps-container chart-star-interps-container">
+      <div class="star-interps-title chart-star-interps-title">星耀落宫解读 ({{ starInterps.length }})</div>
+      <div class="star-interps-content chart-star-interps-content">
+        <div 
+          v-for="(interp, index) in starInterps" 
+          :key="index"
+          class="star-interp-item chart-star-interp-item"
+        >
+          <div class="star-interp-header chart-star-interp-header">
+            <span class="star-interp-star-name chart-star-interp-star-name">{{ translateStarName(interp.star_name) }}</span>
+            <span class="star-interp-palace-name chart-star-interp-palace-name">{{ translatePalaceName(interp.palace_name) }}</span>
+          </div>
+          <div class="star-interp-description chart-star-interp-description">{{ interp.interpretation || '无解读' }}</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 加载状态 -->
     <div v-if="loading" class="loading chart-loading">
       加载中...
@@ -244,6 +262,7 @@ import {
 import { sortPalacesFromOrigin, mergeHoroscopeData } from '../utils/palaceUtils'
 import { 
   translateStarName, 
+  translatePalaceName,
   translateEarthlyBranch, 
   translateGender, 
   translateFiveElementsClass 
@@ -329,6 +348,23 @@ const clickedMutagenInfos = ref([])
 // 格局展示相关
 const patterns = computed(() => {
   return backendRawData.value?.patterns || []
+})
+
+// 星耀落宫解读相关
+const starInterps = computed(() => {
+  if (!backendRawData.value) return []
+  
+  // 根据当前 tab 获取对应的解读数据
+  const interpsMap = {
+    'benming': backendRawData.value.natal_star_interps || [],
+    'daxian': backendRawData.value.decadal_star_interps || [],
+    'liunian': backendRawData.value.yearly_star_interps || [],
+    'liuyue': backendRawData.value.monthly_star_interps || [],
+    'liuri': backendRawData.value.daily_star_interps || [],
+    'liushi': backendRawData.value.hourly_star_interps || []
+  }
+  
+  return interpsMap[activeTab.value] || []
 })
 
 // 计算是否有自化（命宫有四化）- 已移除，不再使用
@@ -732,11 +768,6 @@ watch(() => props.birthInfo, () => {
   }
 }, { immediate: true })
 
-onMounted(() => {
-  if (props.birthInfo) {
-    loadChartData()
-  }
-})
 </script>
 
 <!-- 导入共享样式（不使用 scoped） -->

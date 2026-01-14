@@ -69,8 +69,8 @@
             <span class="info-value chart-info-value">{{ chartData.lunar_date }}</span>
           </div>
           <div class="info-row chart-info-row">
-            <span class="info-label chart-info-label">{{ t('label.ganzhi') }}</span>
-            <span class="info-value chart-info-value">{{ chartData.chinese_date }}</span>
+            <span class="info-label chart-info-label">{{ t('label.solarTermGanzhi') }}</span>
+            <span class="info-value chart-info-value">{{ chartData.solar_term_ganzhi || '' }}</span>
           </div>
           <div class="info-row chart-info-row">
             <span class="info-label chart-info-label">{{ t('label.zodiac') }}</span>
@@ -396,6 +396,7 @@ const updateChartData = () => {
     solar_date: backendRawData.value.solar_date,
     lunar_date: backendRawData.value.lunar_date,
     chinese_date: backendRawData.value.chinese_date,
+    solar_term_ganzhi: backendRawData.value.solar_term_ganzhi,
     zodiac: backendRawData.value.zodiac,
     five_elements_class: backendRawData.value.five_elements_class,
     soul_lord: backendRawData.value.soul_lord,

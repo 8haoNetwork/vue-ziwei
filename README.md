@@ -1,10 +1,18 @@
 # 紫微斗数 Vue 项目
 
-这是一个基于 Vue 3 的紫微斗数盘展示应用，支持本命、大限、流年、流月、流日、流时等不同时间段的切换。
+这是一个基于 Vue 3 的紫微斗数盘前端应用，界面及功能仿照测测a、APP，支持本命、大限、流年、流月、流日、流时等不同时间段的切换。
+
+## 系统截图
+
+<p align="center">
+  <img src="https://static.apiworks.com/astro/img/ziwei_screenshot_1.png" alt="盘面截图" width="45%" />
+  <img src="https://static.apiworks.com/astro/img/ziwei_screenshot_2.png" alt="解读截图" width="45%" />
+</p>
 
 ## 功能特性
 
 ### 核心功能
+
 - 📊 **12宫紫微斗数盘展示** - 传统的 4x4 布局，支持宫位点击高亮
 - 🔄 **多时间段切换** - 支持本命、大限、流年、流月、流日、流时切换
 - ⚙️ **参数配置** - 完整的设置页面，支持：
@@ -19,6 +27,7 @@
   - 宫位-星曜-地支表格（按固定顺序显示）
 
 ### 交互功能
+
 - 🎨 **四化颜色标识** - 禄、权、科、忌使用不同颜色显示
 - 🔍 **星曜高亮** - 点击宫位后，对应的四化星会高亮显示
 - 🎯 **宫位关联** - 点击宫位会自动高亮对宫和三合宫
@@ -26,6 +35,7 @@
 - 📐 **格局展示** - 自动显示命盘的格局信息
 
 ### 技术特性
+
 - 🌐 **国际化支持** - 完整的中英文翻译支持
 - 📱 **响应式设计** - 完美支持移动端和桌面端
 - 🎨 **主题颜色系统** - 使用 CSS 变量统一管理颜色
@@ -41,7 +51,7 @@
 
 ## 项目结构
 
-```
+```text
 vue_ziwei/
 ├── src/
 │   ├── api/
@@ -115,16 +125,18 @@ VITE_APP_KEY=your_app_key
 
 **问题**: 在前端代码中直接存储 `appId` 和 `appKey` 是不安全的，因为这些值会被打包到前端代码中，任何人都可以通过浏览器开发者工具查看。
 
-**推荐方案：使用代理服务器**
+**推荐方案**：使用代理服务器
 
 项目根目录提供了 `proxy-server.js` 作为简单的代理服务器示例：
 
 1. **安装依赖**:
+
    ```bash
    npm install express cors axios dotenv
    ```
 
 2. **创建代理服务器的 `.env` 文件**:
+
    ```env
    APP_ID=your_app_id
    APP_KEY=your_app_key
@@ -133,12 +145,14 @@ VITE_APP_KEY=your_app_key
    ```
 
 3. **启动代理服务器**:
+
    ```bash
    node proxy-server.js
    ```
 
 4. **修改前端配置**:
    将 `VITE_API_BASE_URL` 设置为代理服务器地址：
+
    ```env
    VITE_API_BASE_URL=http://localhost:3000/api
    ```
@@ -161,7 +175,7 @@ VITE_APP_KEY=your_app_key
 
 ### 获取紫微斗数盘数据
 
-后端使用的是<a href="https://astro.apiworks.com">apiworks.com</a>提供的紫薇斗数接口，需要登录网站申请 `appId` 和 `appKey`。
+后端使用的是[apiworks.com](https://astro.apiworks.com)提供的紫薇斗数接口，需要登录网站申请 `appId` 和 `appKey`。
 
 **⚠️ 安全提示**: 请参考上方"安全配置方案"部分，不要在前端代码中直接暴露 API 凭证。
 
@@ -172,7 +186,7 @@ VITE_APP_KEY=your_app_key
 **请求体参数** (JSON):
 
 | 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
+| -------- | ------ | ------ | ------ |
 | `birthday` | string | 是 | 出生日期时间，格式: "1999-09-09 09:09:00" |
 | `tz` | number | 否 | 时区，默认 8（中国时区） |
 | `gender` | string | 是 | 性别：'male' 或 'female' |
@@ -213,7 +227,8 @@ VITE_APP_KEY=your_app_key
 }
 ```
 
-**注意**: 
+**注意**:
+
 - 前端会自动处理后端的 `ApiResp` 响应格式，提取 `data` 字段
 - 宫位索引从 0-11，后端按固定顺序返回（从寅宫开始）
 - 前端会自动将宫位重新排序，从命宫开始显示
@@ -240,7 +255,7 @@ VITE_APP_KEY=your_app_key
 前端会自动将后端返回的数据格式转换为前端展示格式：
 
 1. **宫位排序**: 后端宫位按固定顺序返回，前端会重新排序从命宫开始显示
-2. **四化处理**: 
+2. **四化处理**:
    - 通过 `mutagen_stars` 字典识别星曜的四化类型
    - 通过星曜的 `transform_types` 字段识别自化/对宫化入
 3. **运限数据合并**: 根据当前选择的 Tab，自动合并对应的运限星曜到各宫位
@@ -271,7 +286,9 @@ VITE_APP_KEY=your_app_key
 ## 工具函数说明
 
 ### i18nUtils.js
+
 提供统一的翻译函数：
+
 - `translateStarName()` - 翻译星曜名称
 - `translatePalaceName()` - 翻译宫位名称
 - `translateBrightness()` - 翻译亮度状态
@@ -280,12 +297,16 @@ VITE_APP_KEY=your_app_key
 - `translateFiveElementsClass()` - 翻译五行局
 
 ### mutagenUtils.js
+
 提供四化相关工具函数：
+
 - `normalizeMutagenType()` - 标准化四化类型（如 `sihuaLu` → `lu`）
 - `getMutagenText()` - 获取四化类型的翻译文本
 
 ### palaceUtils.js
+
 提供宫位相关工具函数：
+
 - `sortPalacesFromOrigin()` - 从命宫开始排序宫位
 - `mergeHoroscopeData()` - 合并运限数据到宫位
 

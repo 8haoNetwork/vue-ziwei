@@ -190,17 +190,17 @@ const starParameters = computed(() => {
 // 固定的宫位顺序：命宫-兄弟-夫妻-子女-财帛-疾厄-迁移-交友-官禄-田宅-福德-父母
 // 使用后端返回的英文格式名称
 const fixedPalaceOrder = [
-  'soulPalace',      // 命宫
+  'lifePalace',      // 命宫
   'siblingsPalace',  // 兄弟
   'spousePalace',    // 夫妻
   'childrenPalace',  // 子女
   'wealthPalace',    // 财帛
   'healthPalace',    // 疾厄
-  'surfacePalace',   // 迁移
+  'migrationPalace',   // 迁移
   'friendsPalace',   // 交友
   'careerPalace',    // 官禄
   'propertyPalace',  // 田宅
-  'spiritPalace',    // 福德
+  'fortunePalace',    // 福德
   'parentsPalace'    // 父母
 ]
 

@@ -2,6 +2,7 @@ export default {
   beijingTime: 'Beijing Time',
   lunarCalendar: 'Lunar Calendar',
   ganzhi: 'Ganzhi',
+  solarTermGanzhi: 'Solar Term Ganzhi',
   zodiac: 'Zodiac',
   lifeLord: 'Life Lord',
   bodyLord: 'Body Lord',
