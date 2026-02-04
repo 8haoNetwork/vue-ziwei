@@ -3,6 +3,7 @@ export default {
   lunarCalendar: '农历',
   ganzhi: '干支',
   solarTermGanzhi: '节气四柱',
+  solarTime: '真太阳时',
   zodiac: '生肖',
   lifeLord: '命主',
   bodyLord: '身主',

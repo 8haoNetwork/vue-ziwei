@@ -61,8 +61,8 @@
             <span>{{ translateGender(chartData.gender) }} {{ translateFiveElementsClass(chartData.five_elements_class) }}</span>
           </div>
           <div class="info-row chart-info-row">
-            <span class="info-label chart-info-label">{{ t('label.beijingTime') }}</span>
-            <span class="info-value chart-info-value">{{ chartData.solar_date }} {{ chartData.birthTime || '' }}</span>
+            <span class="info-label chart-info-label">{{ chartData.use_solar_time ? t('label.solarTime') : t('label.beijingTime') }}</span>
+            <span class="info-value chart-info-value">{{ chartData.use_solar_time ? chartData.solar_date : (chartData.birth_date || chartData.solar_date) }}{{ chartData.birthTime ? ' ' + chartData.birthTime : '' }}</span>
           </div>
           <div class="info-row chart-info-row">
             <span class="info-label chart-info-label">{{ t('label.lunarCalendar') }}</span>
@@ -394,8 +394,11 @@ const updateChartData = () => {
   chartData.value = {
     gender: backendRawData.value.gender,
     solar_date: backendRawData.value.solar_date,
+    birth_date: backendRawData.value.birth_date,
+    birthTime: backendRawData.value.birthTime,
+    use_solar_time: backendRawData.value.use_solar_time,
     lunar_date: backendRawData.value.lunar_date,
-    chinese_date: backendRawData.value.chinese_date,
+    lunar_ganzhi: backendRawData.value.lunar_ganzhi,
     solar_term_ganzhi: backendRawData.value.solar_term_ganzhi,
     zodiac: backendRawData.value.zodiac,
     five_elements_class: backendRawData.value.five_elements_class,

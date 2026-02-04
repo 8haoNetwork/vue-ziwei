@@ -71,9 +71,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(4, 1fr);
-  gap: 6px;
-  padding: 10px;
-  background-color: #f5f5f5;
+  padding: 3px;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -88,8 +86,7 @@
 .chart-palace-box {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 6px;
+  padding: 3px;
   font-size: 10px;
   height: 100%;
   position: relative;
@@ -132,7 +129,6 @@
 .chart-info-block-center .chart-info-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   align-items: flex-start;
   justify-content: flex-start;
   max-width: 100%;
@@ -373,8 +369,7 @@
   }
 
   .chart-palace-grid-4x4 {
-    gap: 4px;
-    padding: 8px;
+    padding: 3px;
     width: 100%;
     max-width: 100%;
     height: calc(100vh - 160px);
@@ -387,7 +382,6 @@
     height: 100%;
     padding: 4px;
     font-size: 9px;
-    border-radius: 3px;
   }
 
   .chart-info-block-center {

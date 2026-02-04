@@ -61,8 +61,8 @@
             <span>{{ translateGender(chartData.gender) }} {{ translateFiveElementsClass(chartData.five_elements_class) }}</span>
           </div>
           <div class="info-row chart-info-row">
-            <span class="info-label chart-info-label">{{ t('label.beijingTime') }}</span>
-            <span class="info-value chart-info-value">{{ chartData.solar_date }} {{ chartData.birthTime || '' }}</span>
+            <span class="info-label chart-info-label">{{ chartData.use_solar_time ? t('label.solarTime') : t('label.beijingTime') }}</span>
+            <span class="info-value chart-info-value">{{ chartData.use_solar_time ? chartData.solar_date : (chartData.birth_date || chartData.solar_date) }}{{ chartData.birthTime ? ' ' + chartData.birthTime : '' }}</span>
           </div>
           <div class="info-row chart-info-row">
             <span class="info-label chart-info-label">{{ t('label.lunarCalendar') }}</span>

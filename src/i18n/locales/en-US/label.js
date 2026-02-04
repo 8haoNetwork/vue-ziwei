@@ -3,6 +3,7 @@ export default {
   lunarCalendar: 'Lunar Calendar',
   ganzhi: 'Ganzhi',
   solarTermGanzhi: 'Solar Term Ganzhi',
+  solarTime: 'Solar Time',
   zodiac: 'Zodiac',
   lifeLord: 'Life Lord',
   bodyLord: 'Body Lord',
