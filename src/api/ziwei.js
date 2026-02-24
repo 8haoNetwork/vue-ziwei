@@ -64,9 +64,9 @@ function buildRequestBody(params) {
   }
   const gender = genderMap[params.gender] || params.gender
   
-  // 构建请求体
+  // 构建请求体（后台接口使用 birth_dt 表示出生日期时间）
   const requestBody = {
-    birthday: birthday,
+    birth_dt: birthday,
     tz: params.tz || 8,
     gender: gender
   }
